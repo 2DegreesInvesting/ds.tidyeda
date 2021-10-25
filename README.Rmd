@@ -31,7 +31,7 @@ Each item in this syllabus corresponds to a meetup and a GitHub
 preserves a snapshot of this repository exactly as it was shown during
 thee meetup.
 
-## Overview of the data-science workflow and toolkit
+## Data-science workflow and toolkit: An overview
 
 This meetup overviews the data-science workflow and toolkit. It helps you
 quickly meet the prerequisites for the rest of this meetup-series. 
