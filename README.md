@@ -29,13 +29,10 @@ Objectives:
 
 -   Overview the elements of a defensive workflow and know where to
     learn more.
--   Introduce rmarkdown documents.
--   Overview the data-science workflow and toolkit.
--   Overview the ggplot template.
--   Overview key dplyr verbs, and how to compose them.
 
 ## Next
 
+-   Overview the data science workflow and key toolkit
 -   Explore the variation in your data – visually with ggplot2 and
     analytically with dplyr.
 -   Manipulate and visualize unusual and missing values.
