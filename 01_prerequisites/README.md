@@ -38,13 +38,13 @@ readLines(path)
 
 ### The data science workflow
 
-<img src=https://i.imgur.com/MitpHrJ.png width=500>
+<img src=https://i.imgur.com/MitpHrJ.png width=700>
 
 <https://r4ds.had.co.nz/introduction.html>
 
 ### The data science toolkit
 
-<img src=https://i.imgur.com/i61n3xb.png width=500>
+<img src=https://i.imgur.com/i61n3xb.png width=700>
 
 <https://www.tidyverse.org/>
 
@@ -62,7 +62,7 @@ library(tidyverse)
 
 ### Visualize: The ggplot template
 
-<img src=https://i.imgur.com/WsoXgV2.png width=500>
+<img src=https://i.imgur.com/WsoXgV2.png width=700>
 
 Template:
 
@@ -154,6 +154,6 @@ diamonds %>%
 > specific structure: each variable is a column, each observation is a
 > row.
 
-<img src=https://i.imgur.com/nBC5Rk9.png width=500>
+<img src=https://i.imgur.com/nBC5Rk9.png width=700>
 
 <https://vita.had.co.nz/papers/tidy-data.pdf>
