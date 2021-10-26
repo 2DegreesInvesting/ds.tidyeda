@@ -1,13 +1,48 @@
 
-# Exploratory data analysis with the tidyverse
+### Defensive workflow
 
-## Workflow
+(Find RStudio commands with: Shift + Ctrl/Cmd + P)
+
+[Start from a blank slate every time you restart
+R](https://rstats.wtf/save-source.html):
+
+-   Save workspace on quit: Never.
+-   Load workspace on start: Off.
+-   Restart R session.
+
+[Use RStudio
+projects](https://rstats.wtf/project-oriented-workflow.html#rstudio-projects):
+
+-   Create a new project.
+-   Open project.
+-   File &gt; Recent projects
+
+[Practice safe paths](https://rstats.wtf/safe-paths.html) and [name
+files defensively](https://rstats.wtf/how-to-name-files.html):
+
+``` r
+# Good
+path <- here::here("data", "greeting.txt")
+path
+#> [1] "/home/mauro/git/ds.tidyeda/data/greeting.txt"
+readLines(path)
+#> [1] "Hello world"
+
+# Bad
+path <- "/a/fragile path/that/only/i/have/data/greeting.txt"
+readLines(path)
+#> Warning in file(con, "r"): cannot open file '/a/fragile path/that/only/i/have/
+#> data/greeting.txt': No such file or directory
+#> Error in file(con, "r"): cannot open the connection
+```
+
+### The data science workflow
 
 ![](https://i.imgur.com/MitpHrJ.png)
 
 <https://r4ds.had.co.nz/introduction.html>
 
-## Toolkit
+### The data science toolkit
 
 ![](https://i.imgur.com/i61n3xb.png)
 
@@ -25,13 +60,29 @@ library(tidyverse)
 #> x dplyr::lag()    masks stats::lag()
 ```
 
-### Tidy data
+### Visualize: The ggplot template
 
-> Tidy datasets are easy to manipulate, model and visualise, and have a
-> specific structure: each variable is a column, each observation is a
-> row. – <https://vita.had.co.nz/papers/tidy-data.pdf>
+![](https://i.imgur.com/WsoXgV2.png)
 
-![](https://i.imgur.com/nBC5Rk9.png)
+Template:
+
+        ggplot(data = <DATA>) +
+          <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+Example:
+
+``` r
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+<https://ggplot2.tidyverse.org/>
+
+### Transform: Key dplyr verbs and how to compose them
+
+Example:
 
 ``` r
 diamonds
@@ -49,101 +100,59 @@ diamonds
 #>  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
 #> 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
 #> # … with 53,930 more rows
+
+select(diamonds, cut, price)
+#> # A tibble: 53,940 × 2
+#>    cut       price
+#>    <ord>     <int>
+#>  1 Ideal       326
+#>  2 Premium     326
+#>  3 Good        327
+#>  4 Premium     334
+#>  5 Good        335
+#>  6 Very Good   336
+#>  7 Very Good   336
+#>  8 Very Good   337
+#>  9 Fair        337
+#> 10 Very Good   338
+#> # … with 53,930 more rows
+# Same
+diamonds %>% select(cut, price)
+#> # A tibble: 53,940 × 2
+#>    cut       price
+#>    <ord>     <int>
+#>  1 Ideal       326
+#>  2 Premium     326
+#>  3 Good        327
+#>  4 Premium     334
+#>  5 Good        335
+#>  6 Very Good   336
+#>  7 Very Good   336
+#>  8 Very Good   337
+#>  9 Fair        337
+#> 10 Very Good   338
+#> # … with 53,930 more rows
+
+diamonds %>% 
+  select(cut, price) %>% 
+  count(cut) %>% 
+  filter(n > 10000)
+#> # A tibble: 3 × 2
+#>   cut           n
+#>   <ord>     <int>
+#> 1 Very Good 12082
+#> 2 Premium   13791
+#> 3 Ideal     21551
 ```
-
-### Visualize data with ggplot
-
-![](https://i.imgur.com/WsoXgV2.png)
-
-Template:
-
-    ggplot(data = <DATA>) +
-      <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
-
-Example:
-
-``` r
-ggplot(data = diamonds) +
-  geom_bar(mapping = aes(x = cut))
-```
-
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
-<https://ggplot2.tidyverse.org/>
-
-### Data transformation with dplyr
-
-The main verbs:
-
--   `mutate()` adds columns.
--   `select()` picks columns.
--   `count()` count observations by group.
 
 <https://dplyr.tidyverse.org/>
 
-Example:
+### Tidy data: What and why
 
-``` r
-arrange(diamonds, price)
-#> # A tibble: 53,940 × 10
-#>    carat cut       color clarity depth table price     x     y     z
-#>    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-#>  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-#>  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-#>  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-#>  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-#>  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-#>  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
-#>  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
-#>  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
-#>  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-#> 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
-#> # … with 53,930 more rows
+> Tidy datasets are easy to manipulate, model and visualise, and have a
+> specific structure: each variable is a column, each observation is a
+> row.
 
-# Same
-diamonds %>% arrange(price)
-#> # A tibble: 53,940 × 10
-#>    carat cut       color clarity depth table price     x     y     z
-#>    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-#>  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-#>  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-#>  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-#>  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-#>  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-#>  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
-#>  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
-#>  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
-#>  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-#> 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
-#> # … with 53,930 more rows
+![](https://i.imgur.com/nBC5Rk9.png)
 
-diamonds %>% 
-  arrange(price) %>% 
-  filter(price > 1000) %>% 
-  select(color, cut)
-#> # A tibble: 39,416 × 2
-#>    color cut      
-#>    <ord> <ord>    
-#>  1 G     Very Good
-#>  2 F     Ideal    
-#>  3 E     Ideal    
-#>  4 G     Ideal    
-#>  5 G     Ideal    
-#>  6 G     Ideal    
-#>  7 G     Ideal    
-#>  8 G     Ideal    
-#>  9 E     Good     
-#> 10 G     Fair     
-#> # … with 39,406 more rows
-
-diamonds %>% 
-  count(cut)
-#> # A tibble: 5 × 2
-#>   cut           n
-#>   <ord>     <int>
-#> 1 Fair       1610
-#> 2 Good       4906
-#> 3 Very Good 12082
-#> 4 Premium   13791
-#> 5 Ideal     21551
-```
+<https://vita.had.co.nz/papers/tidy-data.pdf>

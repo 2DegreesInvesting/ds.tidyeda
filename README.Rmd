@@ -30,14 +30,16 @@ thee meetup.
 ## Prerequisites
 
 This meetup helps you quickly meet the prerequisites for the rest of this
-meetup-series. It covers the RStudio setup, workflow and toolkit for an
-effective exploratory data analysis.
+meetup-series. It covers the mimimum elements of a defensive workflow, and of
+the data-science toolking you'll need during this series.
 
 Objectives:
 
-* Setup an RStudio project to explore data with minimal friction.
+* Overview the elements of a defensive workflow and know where to learn more.
 * Introduce rmarkdown documents.
 * Overview the data-science workflow and toolkit.
+* Overview the ggplot template.
+* Overview key dplyr verbs, and how to compose them.
 
 ## Next
 

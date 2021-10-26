@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-# Exploratory data analysis with the tidyverse
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -11,13 +9,42 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Workflow
+### Defensive workflow
+
+(Find RStudio commands with: Shift + Ctrl/Cmd + P)
+
+[Start from a blank slate every time you restart R](https://rstats.wtf/save-source.html):
+
+* Save workspace on quit: Never.
+* Load workspace on start: Off.
+* Restart R session.
+
+[Use RStudio projects](https://rstats.wtf/project-oriented-workflow.html#rstudio-projects):
+
+* Create a new project.
+* Open project.
+* File > Recent projects
+
+[Practice safe paths](https://rstats.wtf/safe-paths.html) and [name files defensively](https://rstats.wtf/how-to-name-files.html):
+
+```{r error = TRUE}
+# Good
+path <- here::here("data", "greeting.txt")
+path
+readLines(path)
+
+# Bad
+path <- "/a/fragile path/that/only/i/have/data/greeting.txt"
+readLines(path)
+```
+
+### The data science workflow
 
 ![](https://i.imgur.com/MitpHrJ.png)
 
 https://r4ds.had.co.nz/introduction.html
 
-## Toolkit
+### The data science toolkit
 
 ![](https://i.imgur.com/i61n3xb.png)
 
@@ -27,28 +54,15 @@ https://www.tidyverse.org/
 library(tidyverse)
 ```
 
-### Tidy data
-
-> Tidy datasets are easy to
-manipulate, model and visualise, and have a specific structure: each variable is
-a column, each observation is a row.
--- https://vita.had.co.nz/papers/tidy-data.pdf
-
-![](https://i.imgur.com/nBC5Rk9.png)
-
-```{r}
-diamonds
-```
-
-### Visualize data with ggplot
+### Visualize: The ggplot template
 
 ![](https://i.imgur.com/WsoXgV2.png)
 
 Template:
 
 ```
-ggplot(data = <DATA>) +
-  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+    ggplot(data = <DATA>) +
+      <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 ```
 
 Example:
@@ -60,29 +74,29 @@ ggplot(data = diamonds) +
 
 https://ggplot2.tidyverse.org/
 
-### Data transformation with dplyr
-
-The main verbs:
-
-* `mutate()` adds columns.
-* `select()` picks columns.
-* `count()` count observations by group.
-
-https://dplyr.tidyverse.org/
+### Transform: Key dplyr verbs and how to compose them
 
 Example:
 
 ```{r}
-arrange(diamonds, price)
+diamonds
 
+select(diamonds, cut, price)
 # Same
-diamonds %>% arrange(price)
+diamonds %>% select(cut, price)
 
 diamonds %>% 
-  arrange(price) %>% 
-  filter(price > 1000) %>% 
-  select(color, cut)
-
-diamonds %>% 
-  count(cut)
+  select(cut, price) %>% 
+  count(cut) %>% 
+  filter(n > 10000)
 ```
+
+https://dplyr.tidyverse.org/
+
+### Tidy data: What and why
+
+> Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row.
+
+![](https://i.imgur.com/nBC5Rk9.png)
+
+https://vita.had.co.nz/papers/tidy-data.pdf
