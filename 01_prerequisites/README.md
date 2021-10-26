@@ -100,7 +100,9 @@ diamonds
 #>  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
 #> 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
 #> # … with 53,930 more rows
+```
 
+``` r
 select(diamonds, cut, price)
 #> # A tibble: 53,940 × 2
 #>    cut       price
@@ -116,24 +118,16 @@ select(diamonds, cut, price)
 #>  9 Fair        337
 #> 10 Very Good   338
 #> # … with 53,930 more rows
+```
 
+Same:
+
+``` r
 # Same
 diamonds %>% select(cut, price)
-#> # A tibble: 53,940 × 2
-#>    cut       price
-#>    <ord>     <int>
-#>  1 Ideal       326
-#>  2 Premium     326
-#>  3 Good        327
-#>  4 Premium     334
-#>  5 Good        335
-#>  6 Very Good   336
-#>  7 Very Good   336
-#>  8 Very Good   337
-#>  9 Fair        337
-#> 10 Very Good   338
-#> # … with 53,930 more rows
+```
 
+``` r
 diamonds %>% 
   select(cut, price) %>% 
   count(cut) %>% 
@@ -144,6 +138,12 @@ diamonds %>%
 #> 1 Very Good 12082
 #> 2 Premium   13791
 #> 3 Ideal     21551
+```
+
+Same but less readable:
+
+``` r
+filter(count(select(diamonds, cut, price), cut), n > 10000)
 ```
 
 <https://dplyr.tidyverse.org/>

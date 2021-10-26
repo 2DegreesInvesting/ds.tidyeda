@@ -80,16 +80,30 @@ Example:
 
 ```{r}
 diamonds
+```
 
+```{r}
 select(diamonds, cut, price)
+```
 
+Same:
+
+```r
 # Same
 diamonds %>% select(cut, price)
+```
 
+```{r}
 diamonds %>% 
   select(cut, price) %>% 
   count(cut) %>% 
   filter(n > 10000)
+```
+
+Same but less readable:
+
+```r
+filter(count(select(diamonds, cut, price), cut), n > 10000)
 ```
 
 https://dplyr.tidyverse.org/
