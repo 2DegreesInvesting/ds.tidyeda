@@ -82,6 +82,7 @@ Example:
 diamonds
 
 select(diamonds, cut, price)
+
 # Same
 diamonds %>% select(cut, price)
 

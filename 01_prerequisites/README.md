@@ -116,6 +116,7 @@ select(diamonds, cut, price)
 #>  9 Fair        337
 #> 10 Very Good   338
 #> # … with 53,930 more rows
+
 # Same
 diamonds %>% select(cut, price)
 #> # A tibble: 53,940 × 2
