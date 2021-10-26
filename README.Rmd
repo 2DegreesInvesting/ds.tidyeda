@@ -2,16 +2,12 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 A series of meetups about the exploring data with the tidyverse.
 
@@ -31,17 +27,17 @@ Each item in this syllabus corresponds to a meetup and a GitHub
 preserves a snapshot of this repository exactly as it was shown during
 thee meetup.
 
-## Data-science workflow and toolkit: An overview
+## Prerequisites
 
-This meetup overviews the data-science workflow and toolkit. It helps you
-quickly meet the prerequisites for the rest of this meetup-series. 
+This meetup helps you quickly meet the prerequisites for the rest of this
+meetup-series. It covers the RStudio setup, workflow and toolkit for an
+effective exploratory data analysis.
 
 Objectives:
 
-* Overview the data-science workflow.
-* Overview the data-science toolkit.
 * Setup an RStudio project to explore data with minimal friction.
-* Create a toy data-science report.
+* Introduce rmarkdown documents.
+* Overview the data-science workflow and toolkit.
 
 ## Next
 
