@@ -31,7 +31,7 @@ Tips:
 * Launch recent projects with: Alt + F > J
 * Launch projects with a dedicated app (Alfred, Albert, etc.)
 
-[Practice safe paths](https://rstats.wtf/safe-paths.html) and [name files defensively](https://rstats.wtf/how-to-name-files.html):
+[Practice safe paths](https://rstats.wtf/safe-paths.html):
 
 ```{r error = TRUE}
 # Good
@@ -43,6 +43,12 @@ readLines(path)
 path <- "/a/fragile path/that/only/i/have/data/greeting.txt"
 readLines(path)
 ```
+
+[How to name files](https://rstats.wtf/how-to-name-files.html):
+
+<img src=https://i.imgur.com/Lo7JFxc.png width=700>
+
+https://speakerdeck.com/jennybc/how-to-name-files?slide=3
 
 ### The data science workflow
 

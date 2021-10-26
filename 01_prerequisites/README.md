@@ -23,8 +23,7 @@ Tips:
 -   Launch recent projects with: Alt + F &gt; J
 -   Launch projects with a dedicated app (Alfred, Albert, etc.)
 
-[Practice safe paths](https://rstats.wtf/safe-paths.html) and [name
-files defensively](https://rstats.wtf/how-to-name-files.html):
+[Practice safe paths](https://rstats.wtf/safe-paths.html):
 
 ``` r
 # Good
@@ -41,6 +40,12 @@ readLines(path)
 #> data/greeting.txt': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 ```
+
+[How to name files](https://rstats.wtf/how-to-name-files.html):
+
+<img src=https://i.imgur.com/Lo7JFxc.png width=700>
+
+<https://speakerdeck.com/jennybc/how-to-name-files?slide=3>
 
 ### The data science workflow
 
