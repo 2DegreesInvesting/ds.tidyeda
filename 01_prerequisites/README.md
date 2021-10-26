@@ -17,6 +17,12 @@ projects](https://rstats.wtf/project-oriented-workflow.html#rstudio-projects):
 -   Open project.
 -   File &gt; Recent projects
 
+Tips:
+
+-   Have a dedicated folder for your projects.
+-   Launch recent projects with: Alt + F &gt; J
+-   Launch projects with a dedicated app (Alfred, Albert, etc.)
+
 [Practice safe paths](https://rstats.wtf/safe-paths.html) and [name
 files defensively](https://rstats.wtf/how-to-name-files.html):
 

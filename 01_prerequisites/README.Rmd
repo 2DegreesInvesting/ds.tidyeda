@@ -25,6 +25,12 @@ knitr::opts_chunk$set(
 * Open project.
 * File > Recent projects
 
+Tips:
+
+* Have a dedicated folder for your projects.
+* Launch recent projects with: Alt + F > J
+* Launch projects with a dedicated app (Alfred, Albert, etc.)
+
 [Practice safe paths](https://rstats.wtf/safe-paths.html) and [name files defensively](https://rstats.wtf/how-to-name-files.html):
 
 ```{r error = TRUE}
