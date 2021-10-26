@@ -1,0 +1,88 @@
+---
+output: github_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### The data science workflow
+
+<img src=https://i.imgur.com/MitpHrJ.png width=700>
+
+https://r4ds.had.co.nz/introduction.html
+
+### The data science toolkit
+
+<img src=https://i.imgur.com/i61n3xb.png width=700>
+
+https://www.tidyverse.org/
+
+```{r packages}
+library(tidyverse)
+```
+
+### Visualize: The ggplot template
+
+<img src=https://i.imgur.com/WsoXgV2.png width=700>
+
+Template:
+
+```
+    ggplot(data = <DATA>) +
+      <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+Example:
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut))
+```
+
+https://ggplot2.tidyverse.org/
+
+### Transform: Key dplyr verbs and how to compose them
+
+Example:
+
+```{r}
+diamonds
+```
+
+```{r}
+select(diamonds, cut, price)
+```
+
+Same:
+
+```r
+# Same
+diamonds %>% select(cut, price)
+```
+
+```{r}
+diamonds %>% 
+  select(cut, price) %>% 
+  count(cut) %>% 
+  filter(n > 10000)
+```
+
+Same but less readable:
+
+```r
+filter(count(select(diamonds, cut, price), cut), n > 10000)
+```
+
+https://dplyr.tidyverse.org/
+
+### Tidy data: What and why
+
+> Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row.
+
+<img src=https://i.imgur.com/nBC5Rk9.png width=700>
+
+https://vita.had.co.nz/papers/tidy-data.pdf
