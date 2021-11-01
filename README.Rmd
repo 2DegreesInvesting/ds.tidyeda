@@ -46,8 +46,8 @@ Objectives:
 
 * Introduce rmarkdown documents.
 * Overview the data-science workflow and toolkit.
-* Overview the ggplot template.
-* Overview key dplyr verbs, and how to compose them.
+* Overview the tool for visualization: ggplot2.
+* Overview the tool for transformation: dplyr.
 
 ## Next
 

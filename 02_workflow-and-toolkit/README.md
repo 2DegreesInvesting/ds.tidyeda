@@ -27,11 +27,6 @@ library(tidyverse)
 
 <img src=https://i.imgur.com/WsoXgV2.png width=700>
 
-Template:
-
-        ggplot(data = <DATA>) +
-          <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
-
 Example:
 
 ``` r
@@ -42,6 +37,11 @@ ggplot(data = diamonds) +
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 <https://ggplot2.tidyverse.org/>
+
+Template:
+
+        ggplot(data = <DATA>) +
+          <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 
 ### Transform: Key dplyr verbs and how to compose them
 
@@ -83,12 +83,36 @@ select(diamonds, cut, price)
 #> # … with 53,930 more rows
 ```
 
-Same:
+Same using the “pipe” (`%>%` \~ “then”). Read it like this:
+
+-   Take the dataset `diamonds` **then**
+-   `select` the columns `cut` and `price`
 
 ``` r
-# Same
-diamonds %>% select(cut, price)
+diamonds %>% 
+  select(cut, price)
+#> # A tibble: 53,940 × 2
+#>    cut       price
+#>    <ord>     <int>
+#>  1 Ideal       326
+#>  2 Premium     326
+#>  3 Good        327
+#>  4 Premium     334
+#>  5 Good        335
+#>  6 Very Good   336
+#>  7 Very Good   336
+#>  8 Very Good   337
+#>  9 Fair        337
+#> 10 Very Good   338
+#> # … with 53,930 more rows
 ```
+
+Another example:
+
+-   Take the dataset `diamonds` **then**
+-   `select` the columns `cut` and `price` **then**
+-   `count` unique values of the column `cut` **then**
+-   `filter` rows where `n` is greater than `1000`
 
 ``` r
 diamonds %>% 
@@ -103,10 +127,17 @@ diamonds %>%
 #> 3 Ideal     21551
 ```
 
-Same but less readable:
+The traditional “nested” syntax produces the same output but is less
+readable:
 
 ``` r
 filter(count(select(diamonds, cut, price), cut), n > 10000)
+#> # A tibble: 3 × 2
+#>   cut           n
+#>   <ord>     <int>
+#> 1 Very Good 12082
+#> 2 Premium   13791
+#> 3 Ideal     21551
 ```
 
 <https://dplyr.tidyverse.org/>

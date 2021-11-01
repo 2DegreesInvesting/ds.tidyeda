@@ -29,13 +29,6 @@ library(tidyverse)
 
 <img src=https://i.imgur.com/WsoXgV2.png width=700>
 
-Template:
-
-```
-    ggplot(data = <DATA>) +
-      <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
-```
-
 Example:
 
 ```{r}
@@ -44,6 +37,13 @@ ggplot(data = diamonds) +
 ```
 
 https://ggplot2.tidyverse.org/
+
+Template:
+
+```
+    ggplot(data = <DATA>) +
+      <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
 
 ### Transform: Key dplyr verbs and how to compose them
 
@@ -57,12 +57,22 @@ diamonds
 select(diamonds, cut, price)
 ```
 
-Same:
+Same using the "pipe" (`%>%` ~ "then"). Read it like this:
 
-```r
-# Same
-diamonds %>% select(cut, price)
+* Take the dataset `diamonds` **then**
+* `select` the columns `cut` and `price`
+
+```{r}
+diamonds %>% 
+  select(cut, price)
 ```
+
+Another example:
+
+* Take the dataset `diamonds` **then**
+* `select` the columns `cut` and `price` **then**
+* `count` unique values of the column `cut` **then**
+* `filter` rows where `n` is greater than `1000`
 
 ```{r}
 diamonds %>% 
@@ -71,9 +81,9 @@ diamonds %>%
   filter(n > 10000)
 ```
 
-Same but less readable:
+The traditional "nested" syntax produces the same output but is less readable:
 
-```r
+```{r}
 filter(count(select(diamonds, cut, price), cut), n > 10000)
 ```
 
