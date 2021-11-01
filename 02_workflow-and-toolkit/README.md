@@ -25,6 +25,8 @@ library(tidyverse)
 
 ### Visualize: The ggplot template
 
+<https://ggplot2.tidyverse.org/>
+
 <img src=https://i.imgur.com/WsoXgV2.png width=700>
 
 Example:
@@ -36,14 +38,14 @@ ggplot(data = diamonds) +
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-<https://ggplot2.tidyverse.org/>
-
 Template:
 
         ggplot(data = <DATA>) +
           <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 
 ### Transform: Key dplyr verbs and how to compose them
+
+<https://dplyr.tidyverse.org/>
 
 Example:
 
@@ -139,15 +141,3 @@ filter(count(select(diamonds, cut, price), cut), n > 10000)
 #> 2 Premium   13791
 #> 3 Ideal     21551
 ```
-
-<https://dplyr.tidyverse.org/>
-
-### Tidy data: What and why
-
-> Tidy datasets are easy to manipulate, model and visualise, and have a
-> specific structure: each variable is a column, each observation is a
-> row.
-
-<img src=https://i.imgur.com/nBC5Rk9.png width=700>
-
-<https://vita.had.co.nz/papers/tidy-data.pdf>
