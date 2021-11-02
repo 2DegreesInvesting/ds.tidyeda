@@ -7,6 +7,10 @@
 
 ### The data science toolkit
 
+-   Rmarkdown
+
+-   The tidyverse
+
 <img src=https://i.imgur.com/i61n3xb.png width=700>
 
 <https://www.tidyverse.org/>
