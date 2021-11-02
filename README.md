@@ -37,8 +37,8 @@ need for the rest of this meetup series.
 
 Objectives:
 
--   Introduce rmarkdown documents.
 -   Overview the data-science workflow and toolkit.
+-   Introduce rmarkdown documents.
 -   Overview the tool for visualization: ggplot2.
 -   Overview the tool for transformation: dplyr.
 
