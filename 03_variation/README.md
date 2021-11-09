@@ -76,11 +76,32 @@ measurement to measurement.
 A categorical variable can only take one of a small set of values.
 
 ``` r
+diamonds %>%
+  relocate(cut)
+#> # A tibble: 53,940 × 10
+#>    cut       carat color clarity depth table price     x     y     z
+#>    <ord>     <dbl> <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+#>  1 Ideal      0.23 E     SI2      61.5    55   326  3.95  3.98  2.43
+#>  2 Premium    0.21 E     SI1      59.8    61   326  3.89  3.84  2.31
+#>  3 Good       0.23 E     VS1      56.9    65   327  4.05  4.07  2.31
+#>  4 Premium    0.29 I     VS2      62.4    58   334  4.2   4.23  2.63
+#>  5 Good       0.31 J     SI2      63.3    58   335  4.34  4.35  2.75
+#>  6 Very Good  0.24 J     VVS2     62.8    57   336  3.94  3.96  2.48
+#>  7 Very Good  0.24 I     VVS1     62.3    57   336  3.95  3.98  2.47
+#>  8 Very Good  0.26 H     SI1      61.9    55   337  4.07  4.11  2.53
+#>  9 Fair       0.22 E     VS2      65.1    61   337  3.87  3.78  2.49
+#> 10 Very Good  0.23 H     VS1      59.4    61   338  4     4.05  2.39
+#> # … with 53,930 more rows
+```
+
+Visualize:
+
+``` r
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 By hand:
 
@@ -100,11 +121,32 @@ diamonds %>%
 A continuous variable can take any of an infinite set of ordered values.
 
 ``` r
+diamonds %>% 
+  relocate(carat)
+#> # A tibble: 53,940 × 10
+#>    carat cut       color clarity depth table price     x     y     z
+#>    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+#>  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+#>  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+#>  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+#>  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+#>  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+#>  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+#>  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+#>  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+#>  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+#> 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+#> # … with 53,930 more rows
+```
+
+Visualize:
+
+``` r
 ggplot(data = diamonds) +
   geom_histogram(mapping = aes(x = carat), binwidth = 0.5)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 By hand:
 
@@ -137,7 +179,7 @@ ggplot(data = smaller, mapping = aes(x = carat)) +
   geom_histogram(binwidth = 0.1)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 -   Overlay multiple histograms in the same plot:`geom_freqpoly()`.
 
@@ -146,4 +188,20 @@ ggplot(data = smaller, mapping = aes(x = carat, colour = cut)) +
   geom_freqpoly(binwidth = 0.1)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+### Resources
+
+-   [R for data science (book)](https://r4ds.had.co.nz/index.html).
+
+-   [ggplot2](https://ggplot2.tidyverse.org/):
+
+    -   [Template](https://r4ds.had.co.nz/data-visualisation.html#a-graphing-template).
+
+    -   [Reference](https://ggplot2.tidyverse.org/reference/index.html).
+
+    -   [Cheatsheet](https://ggplot2.tidyverse.org/index.html#cheatsheet).
+
+-   [dplyr](https://dplyr.tidyverse.org/):
+
+    -   [Reference](https://dplyr.tidyverse.org/reference/index.html).

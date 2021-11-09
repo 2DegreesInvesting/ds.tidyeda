@@ -60,6 +60,13 @@ to measurement.
 A categorical variable can only take one of a small set of values.
 
 ```{r}
+diamonds %>%
+  relocate(cut)
+```
+
+Visualize:
+
+```{r}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut))
 ```
@@ -72,6 +79,13 @@ diamonds %>%
 ```
 
 A continuous variable can take any of an infinite set of ordered values.
+
+```{r}
+diamonds %>% 
+  relocate(carat)
+```
+
+Visualize:
 
 ```{r}
 ggplot(data = diamonds) +
@@ -101,4 +115,20 @@ ggplot(data = smaller, mapping = aes(x = carat)) +
 ggplot(data = smaller, mapping = aes(x = carat, colour = cut)) +
   geom_freqpoly(binwidth = 0.1)
 ```
+
+### Resources
+
+* [R for data science (book)](https://r4ds.had.co.nz/index.html).
+
+* [ggplot2](https://ggplot2.tidyverse.org/):
+
+    * [Template](https://r4ds.had.co.nz/data-visualisation.html#a-graphing-template).
+
+    * [Reference](https://ggplot2.tidyverse.org/reference/index.html).
+
+    * [Cheatsheet](https://ggplot2.tidyverse.org/index.html#cheatsheet).
+
+* [dplyr](https://dplyr.tidyverse.org/):
+
+    * [Reference](https://dplyr.tidyverse.org/reference/index.html).
 
