@@ -13,12 +13,14 @@ library(tidyverse, warn.conflicts = FALSE)
 
 ### Questions
 
--   Why explore your data? To understand your data.
+Exploratory Data Analysis (EDA):
 
--   How to explore your data? Using **questions** as tools to focus on a
-    specific part of your data.
+-   Why? To understand your data.
 
-Two types of questions are always useful:
+-   How? Using **questions** as tools to focus on a specific part of
+    your data.
+
+Questions that are always useful:
 
 -   What type of **variation** occurs within my variables?
 
@@ -45,18 +47,17 @@ Two types of questions are always useful:
 
 ### Variation
 
-> Variation is the tendency of the values of a variable to change from
-> measurement to measurement.
+Variation: The tendency of the values of a variable to change from
+measurement to measurement.
 
-> Every variable has its own pattern of variation.
+-   Every variable has its own pattern of variation.
 
-> The best way to understand that pattern is to visualise the
-> distribution of the variable’s values.
+-   Plotting the distribution of a variable helps you understand that
+    pattern.
 
-–
+#### Exploring the distribution of categorical variables
 
-> A variable is categorical if it can only take one of a small set of
-> values.
+A categorical variable can only take one of a small set of values.
 
 ``` r
 ggplot(data = diamonds) +
@@ -64,6 +65,8 @@ ggplot(data = diamonds) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+By hand:
 
 ``` r
 diamonds %>% 
@@ -78,8 +81,7 @@ diamonds %>%
 #> 5 Ideal     21551
 ```
 
-> A variable is continuous if it can take any of an infinite set of
-> ordered values.
+A continuous variable can take any of an infinite set of ordered values.
 
 ``` r
 ggplot(data = diamonds) +
@@ -87,6 +89,8 @@ ggplot(data = diamonds) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+By hand:
 
 ``` r
 diamonds %>% 
@@ -121,14 +125,9 @@ ggplot(data = smaller, mapping = aes(x = carat)) +
 
 -   Overlay multiple histograms in the same plot:`geom_freqpoly()`.
 
-Follow-up questions:
+``` r
+ggplot(data = smaller, mapping = aes(x = carat, colour = cut)) +
+  geom_freqpoly(binwidth = 0.1)
+```
 
-### Typical values
-
--   Which values are the most common? Why?
--   Which values are rare? Why? Does that match your expectations?
--   Can you see any unusual patterns? What might explain them? *How are
-    the observations within each cluster similar to each other? *How are
-    the observations in separate clusters different from each other?
-    *How can you explain or describe the clusters? *Why might the
-    appearance of clusters be misleading?
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
