@@ -1,18 +1,16 @@
 
 ### Questions
 
-Exploratory Data Analysis (EDA):
+-   An exploratory Data Analysis (EDA) helps you understand your data.
 
--   Why? To understand your data.
+-   **Questions** are tools to help you focus on a specific part of your
+    data.
 
--   How? Using **questions** as tools to focus on a specific part of
-    your data.
+-   Two types of questions are always useful:
 
-Questions that are always useful:
+    1.  What type of **variation** occurs within my variables?
 
--   What type of **variation** occurs within my variables?
-
--   What type of **covariation** occurs between my variables?
+    2.  What type of **covariation** occurs between my variables?
 
 ### Definitions
 
