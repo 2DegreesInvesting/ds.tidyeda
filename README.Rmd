@@ -49,10 +49,21 @@ Objectives:
 * Overview the tool for visualization: ggplot2.
 * Overview the tool for transformation: dplyr.
 
+## Explore the variation with ggplot2 and dplyr
+
+This meetup covers the sectoin
+[Variation](https://r4ds.had.co.nz/exploratory-data-analysis.html#variation).
+
+Objectives:
+
+* Visualize the distribution of a categorical variable with `geom_bar()`.
+* Visualize the distribution of a continuous variable with `geom_histogram()`.
+* Count instances of a categorical variable with `count()`.
+
+
+
 ## Next
 
-* Explore the variation in your data -- visually with ggplot2 and analytically
-with dplyr.
 * Manipulate and visualize unusual and missing values.
 * Explore the covariation between categorical and continuous variables.
 * Explore patterns in your data and extract them with a model.

@@ -42,10 +42,13 @@ Objectives:
 -   Overview the tool for visualization: ggplot2.
 -   Overview the tool for transformation: dplyr.
 
+## Explore the variation with ggplot2 and dplyr
+
+This meetup covers the sectoin
+[Variation](https://r4ds.had.co.nz/exploratory-data-analysis.html#variation).
+
 ## Next
 
--   Explore the variation in your data – visually with ggplot2 and
-    analytically with dplyr.
 -   Manipulate and visualize unusual and missing values.
 -   Explore the covariation between categorical and continuous
     variables.
