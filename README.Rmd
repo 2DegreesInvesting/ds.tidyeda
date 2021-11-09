@@ -49,7 +49,7 @@ Objectives:
 * Overview the tool for visualization: ggplot2.
 * Overview the tool for transformation: dplyr.
 
-## Explore the variation with ggplot2 and dplyr
+## Exploring variation with ggplot2 and dplyr
 
 This meetup covers
 [Variation](https://r4ds.had.co.nz/exploratory-data-analysis.html#variation).
