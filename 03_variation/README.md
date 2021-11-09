@@ -1,4 +1,16 @@
 
+``` r
+library(tidyverse)
+#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+#> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+#> ✓ tibble  3.1.6     ✓ dplyr   1.0.7
+#> ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+#> ✓ readr   2.0.2     ✓ forcats 0.5.1
+#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> x dplyr::filter() masks stats::filter()
+#> x dplyr::lag()    masks stats::lag()
+```
+
 ### Questions
 
 -   An exploratory Data Analysis (EDA) helps you understand your data.
@@ -34,16 +46,6 @@
 Example:
 
 ``` r
-library(tidyverse)
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-#> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-#> ✓ tibble  3.1.6     ✓ dplyr   1.0.7
-#> ✓ tidyr   1.1.4     ✓ stringr 1.4.0
-#> ✓ readr   2.0.2     ✓ forcats 0.5.1
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
-
 diamonds
 #> # A tibble: 53,940 × 10
 #>    carat cut       color clarity depth table price     x     y     z
@@ -101,7 +103,7 @@ ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 By hand:
 
@@ -146,7 +148,7 @@ ggplot(data = diamonds) +
   geom_histogram(mapping = aes(x = carat), binwidth = 0.5)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 By hand:
 
@@ -179,7 +181,7 @@ ggplot(data = smaller, mapping = aes(x = carat)) +
   geom_histogram(binwidth = 0.1)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 -   Overlay multiple histograms in the same plot:`geom_freqpoly()`.
 
@@ -188,7 +190,7 @@ ggplot(data = smaller, mapping = aes(x = carat, colour = cut)) +
   geom_freqpoly(binwidth = 0.1)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ### Resources
 
