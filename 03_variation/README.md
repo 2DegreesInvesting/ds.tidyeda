@@ -3,8 +3,8 @@
 
 -   An exploratory Data Analysis (EDA) helps you understand your data.
 
--   **Questions** are tools to help you focus on a specific part of your
-    data.
+-   Use **questions** as tools to help you focus on a specific part of
+    your data.
 
 -   Two types of questions are always useful:
 
