@@ -21,8 +21,8 @@ thee meetup.
 ## Prerequisites
 
 This meetup helps you quickly meet the prerequisites for the rest of
-this meetup-series. It covers the mimimum elements of a defensive
-workflow, and of the data-science toolking you’ll need during this
+this meetup-series. It covers the minimum elements of a defensive
+workflow, and of the data-science toolkit you’ll need during this
 series.
 
 Objectives:
@@ -44,12 +44,21 @@ Objectives:
 
 ## Explore the variation with ggplot2 and dplyr
 
-This meetup covers the sectoin
+This meetup covers
 [Variation](https://r4ds.had.co.nz/exploratory-data-analysis.html#variation).
+
+Objectives:
+
+-   Understand the role of “questions” in an exploratory data analysis.
+-   Review the definitions of the main components of a data set.
+-   Explore the distribution of a categorical variable.
+-   Explore the distribution of a continuous variable.
+-   Explore the distribution of multiple groups of data in a single
+    plot.
 
 ## Next
 
--   Manipulate and visualize unusual and missing values.
+-   Manipulate and visualize typical, unusual, and missing values.
 -   Explore the covariation between categorical and continuous
     variables.
 -   Explore patterns in your data and extract them with a model.
