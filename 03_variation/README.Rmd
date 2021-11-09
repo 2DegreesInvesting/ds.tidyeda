@@ -9,10 +9,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
-library(tidyverse, warn.conflicts = FALSE)
-```
-
 ### Questions
 
 Exploratory Data Analysis (EDA):
@@ -43,6 +39,14 @@ Questions that are always useful:
 > Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row.
 
 <img src=https://i.imgur.com/nBC5Rk9.png width=700>
+
+Example:
+
+```{r}
+library(tidyverse)
+
+diamonds
+```
 
 ### Variation
 
