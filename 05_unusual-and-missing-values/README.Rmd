@@ -17,64 +17,10 @@ library(tidyverse)
 
 Data.
 
-`?diamonds`:
-
-* `price`: price in US dollars.
-* `carat`: weight of the diamond (0.2–5.01).
-* `x, y, z`: length, width, depth in mm.
-
 ```{r}
 diamonds %>% 
   select(price, carat, x, y, z)
 ```
-
-An overview.
-
-```{r}
-diamonds %>% 
-  glimpse()
-```
-
-### Visualize the most common and rare values in a dataset
-
-What a bar chart or histogram can tell you:
-
-* Tall bars show common values.
-
-* Shorter bars show less-common values. 
-
-* No bars reveal values that were not seen in your data.
-
-General questions:
-
-* Which values are the most common? Why?
-
-* Which values are rare? Why? Does that match your expectations?
-
-* Can you see any unusual patterns? What might explain them?
-
-Specific questions for the plot below:
-
-* Why are there more diamonds at whole carats and common fractions of carats?
-
-* Why are there more diamonds slightly to the right of each peak than there are
-slightly to the left of each peak?
-
-```{r}
-smaller <- diamonds %>% 
-  filter(carat < 3)
-
-ggplot(data = smaller, mapping = aes(x = carat)) +
-  geom_histogram(binwidth = 0.01)
-```
-
-Clusters of similar values suggest that subgroups exist in your data. To understand the subgroups, ask:
-
-* How are the observations within each cluster similar to each other?
-
-* How are the observations in separate clusters different from each other?
-
-* Why might the appearance of clusters be misleading? (Consider bin-width.)
 
 ### Explore outliers analytically, and by zooming into a plot
 
