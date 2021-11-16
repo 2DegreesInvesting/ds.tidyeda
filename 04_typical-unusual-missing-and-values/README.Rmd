@@ -17,10 +17,18 @@ library(tidyverse)
 
 Data.
 
+`?diamonds`:
+
+* `price`: price in US dollars.
+* `carat`: weight of the diamond (0.2–5.01).
+* `x, y, z`: length, width, depth in mm.
+
 ```{r}
-# ?diamonds
-diamonds
+diamonds %>% 
+  select(price, carat, x, y, z)
 ```
+
+An overview.
 
 ```{r}
 diamonds %>% 
@@ -99,6 +107,16 @@ Here is another way to "zoom in". Why in this case it isn't a good way?
 ggplot(diamonds) + 
   geom_histogram(mapping = aes(x = y), binwidth = 0.5) +
   ylim(c(0, 50))
+```
+
+Let's now explore those outliers analytically. Can you see why they are errors?
+
+```{r}
+unusual <- diamonds %>% 
+  filter(y < 3 | y > 20) %>% 
+  select(price, x, y, z) %>%
+  arrange(y)
+unusual
 ```
 
 ### Transforming incorrect values into missing values
