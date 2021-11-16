@@ -1,0 +1,30 @@
+---
+output: github_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(tidyverse)
+```
+
+### Visualize the most common and rare values in a dataset.
+
+
+
+### Explore outliers analytically, and by zooming into a plot.
+
+
+
+### Transforming incorrect values into missing values.
+
+
+
+### Convert missing values into a logical variable so you can visualize them.
+
+
