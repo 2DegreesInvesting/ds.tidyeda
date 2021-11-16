@@ -56,9 +56,25 @@ Objectives:
 -   Explore the distribution of multiple groups of data in a single
     plot.
 
+### Typical, unusual, and missing values.
+
+This meetup covers strategies to manipulate and visualize
+[typical](https://r4ds.had.co.nz/exploratory-data-analysis.html#typical-values),
+[unusual](https://r4ds.had.co.nz/exploratory-data-analysis.html#unusual-values),
+and
+[missing](https://r4ds.had.co.nz/exploratory-data-analysis.html#missing-values-2)
+values.
+
+Objectives:
+
+-   Visualize the most common and rare values in a dataset.
+-   Explore outliers analytically, and by zooming into a plot.
+-   Transforming incorrect values into missing values.
+-   Convert missing values into a logical variable so you can visualize
+    them.
+
 ## Next
 
--   Manipulate and visualize typical, unusual, and missing values.
 -   Explore the covariation between categorical and continuous
     variables.
 -   Explore patterns in your data and extract them with a model.
