@@ -169,6 +169,69 @@ unusual
 #> 9 12210  8.09  58.9  8.06
 ```
 
+Tip: Repeat your analysis with and without the outliers:
+
+-   If they have substantial effect, only drop them if you can justify.
+
+-   If they have minimal effect, you can can replace them with missing
+    values.
+
 ### Transforming incorrect values into missing values
 
+How can you remove data-entry errors?
+
+1.  Remove the entire row. Why this may not be a good idea?
+
+``` r
+diamonds2 <- diamonds %>% 
+  filter(between(y, 3, 20))
+```
+
+2.  Replace them with missing values.
+
+``` r
+diamonds2 <- diamonds %>% 
+  mutate(y = ifelse(y < 3 | y > 20, NA, y))
+```
+
+Note the warning:
+
+``` r
+ggplot(data = diamonds2, mapping = aes(x = x, y = y)) + 
+  geom_point()
+#> Warning: Removed 9 rows containing missing values (geom_point).
+```
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
 ### Convert missing values into a logical variable so you can visualize them
+
+Convert missing values into logical values, then visualize them.
+
+``` r
+diamonds3 <- diamonds2 %>% 
+  mutate(is_error = is.na(y))
+
+ggplot(diamonds3) +
+  geom_bar(aes(is_error))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+Zoom in.
+
+``` r
+diamonds3 %>% 
+  count(is_error)
+#> # A tibble: 2 × 2
+#>   is_error     n
+#>   <lgl>    <int>
+#> 1 FALSE    53931
+#> 2 TRUE         9
+
+ggplot(diamonds3) +
+  geom_bar(aes(is_error)) +
+  coord_cartesian(ylim = c(0, 100))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
