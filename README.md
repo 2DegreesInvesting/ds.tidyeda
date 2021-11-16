@@ -56,7 +56,7 @@ Objectives:
 -   Explore the distribution of multiple groups of data in a single
     plot.
 
-### Typical, unusual, and missing values
+## Typical, unusual, and missing values
 
 This meetup covers strategies to manipulate and visualize
 [typical](https://r4ds.had.co.nz/exploratory-data-analysis.html#typical-values),
