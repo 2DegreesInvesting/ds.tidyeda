@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include = FALSE}
@@ -12,14 +14,14 @@ knitr::opts_chunk$set(
 Packages.
 
 ```{r}
-library(_________)
+library(tidyverse)
 ```
 
 Data.
 
 ```{r}
 diamonds %>% 
-  ______(price, carat, x, y, z)
+  select(price, carat, x, y, z)
 ```
 
 ### Explore outliers analytically, and by zooming into a plot
@@ -35,8 +37,8 @@ Example:
 * Why are the limits of the `y` axis so wide?
 
 ```{r}
-ggplot(________) + 
-  geom_histogram(mapping = ___(x = y), ________ = 0.5)
+ggplot(diamonds) + 
+  geom_histogram(aes(x = y))
 ```
 
 Let's zoom in! Can you now see what's going on?
@@ -44,7 +46,7 @@ Let's zoom in! Can you now see what's going on?
 ```{r}
 ggplot(diamonds) + 
   geom_histogram(mapping = aes(x = y), binwidth = 0.5) +
-  coord_cartesian(____ = c(0, 50))
+  coord_cartesian(ylim = c(0, 50))
 ```
 
 Here is another way to "zoom in". Why in this case it isn't a good way?
@@ -52,13 +54,13 @@ Here is another way to "zoom in". Why in this case it isn't a good way?
 ```{r}
 ggplot(diamonds) + 
   geom_histogram(mapping = aes(x = y), binwidth = 0.5) +
-  ____(c(0, 50))
+  ylim(c(0, 50))
 ```
 
 Let's now explore those outliers analytically. Can you see why they are errors?
 
 ```{r}
-unusual <- ________ %>% 
+unusual <- diamonds %>% 
   filter(y < 3 | y > 20) %>% 
   select(price, x, y, z) %>%
   arrange(y)
@@ -79,20 +81,20 @@ How can you remove data-entry errors?
 
 ```{r}
 diamonds2 <- diamonds %>% 
-  filter(between(y, _, __))
+  filter(between(y, 3, 20))
 ```
 
 2. Replace them with missing values.
 
 ```{r}
 diamonds2 <- diamonds %>% 
-  mutate(y = ______(y < 3 | y > 20, NA, y))
+  mutate(y = ifelse(y < 3 | y > 20, NA, y))
 ```
 
 Note the warning:
 
 ```{r}
-ggplot(data = _________, mapping = aes(x = x, y = y)) + 
+ggplot(data = diamonds2, mapping = aes(x = x, y = y)) + 
   geom_point()
 ```
 
@@ -102,10 +104,10 @@ Convert missing values into logical values, then visualize them.
 
 ```{r}
 diamonds3 <- diamonds2 %>% 
-  mutate(is_error = is.__(y))
+  mutate(is_error = is.na(y))
 
 ggplot(diamonds3) +
-  geom_bar(aes(________))
+  geom_bar(aes(is_error))
 ```
 
 Zoom in.
@@ -116,5 +118,5 @@ diamonds3 %>%
 
 ggplot(diamonds3) +
   geom_bar(aes(is_error)) +
-  _______________(ylim = c(0, 100))
+  coord_cartesian(ylim = c(0, 100))
 ```

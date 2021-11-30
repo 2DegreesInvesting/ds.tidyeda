@@ -7,7 +7,7 @@ library(tidyverse)
 #> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
 #> ✓ tibble  3.1.6     ✓ dplyr   1.0.7
 #> ✓ tidyr   1.1.4     ✓ stringr 1.4.0
-#> ✓ readr   2.0.2     ✓ forcats 0.5.1
+#> ✓ readr   2.1.0     ✓ forcats 0.5.1
 #> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
@@ -48,7 +48,8 @@ Example:
 
 ``` r
 ggplot(diamonds) + 
-  geom_histogram(mapping = aes(x = y), binwidth = 0.5)
+  geom_histogram(aes(x = y))
+#> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
