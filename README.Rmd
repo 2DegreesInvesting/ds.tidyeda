@@ -71,7 +71,7 @@ Objectives:
 
 * Visualize the most common and rare values in a dataset.
 
-## Typical, unusual, and missing values
+## Unusual, and missing values
 
 This meetup covers strategies to manipulate and visualize
 [unusual](https://r4ds.had.co.nz/exploratory-data-analysis.html#unusual-values),
