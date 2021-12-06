@@ -1,0 +1,126 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Covariation
+
+* The tendency for two or more variables to vary together in a related way.
+
+* To spot covariation, visualise the relationship between the variables. 
+
+* How? It depends on whether the variables are categorical or continuous.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Packages.
+
+```{r}
+library(tidyverse)
+```
+
+Data.
+
+```{r}
+diamonds %>% 
+  select(price, cut)
+```
+
+```{r}
+mpg %>% 
+  select(class, hwy)
+```
+
+### A categorical and continuous variable.
+
+#### Freaquency plot
+
+This isn't very useful.
+
+```r
+ggplot(data = diamonds) + 
+  geom_freqpoly(mapping = aes(x = price, colour = cut))
+```
+
+Same
+
+```{r}
+ggplot(diamonds) + 
+  geom_freqpoly(aes(x = price, colour = cut))
+```
+The variation of count across values of cut is too much. To make the comparison
+easier we need to standardize the valyes of `y`. Let's plot density: The count
+standardize so that the area under each curve is one.
+
+```{r}
+ggplot(diamonds) + 
+  geom_freqpoly(aes(x = price, y = ..density.., colour = cut))
+```
+
+Surprisingly, fair diamonds (the lowest quality) seem to have the highest average price!
+
+#### Box plot
+
+![](eda-boxplot.png)
+
+```{r}
+ggplot(diamonds, aes(x = cut, y = price)) +
+  geom_boxplot()
+```
+
+* The boxplots are compact so we can more easily compare them.
+
+* Are better quality diamonds cheaper on average?
+
+--
+
+* `cut` is an "ordered" factor.
+
+* `hwy` (Highway miles per gallon) isn't ordered so the trend is hard to see:
+
+```{r}
+default_aes <- aes(
+  x = class,
+  y = hwy
+)
+default_aes
+```
+
+```{r}
+ggplot(mpg) +
+  geom_boxplot(default_aes)
+```
+
+`reorder()` helps you order values of a categorical variable like `cut`.
+
+```{r}
+reordered_aes <- aes(
+  x = reorder(class, hwy, FUN = median),
+  y = hwy
+)
+reordered_aes
+```
+
+```{r}
+p <- ggplot(mpg) +
+  geom_boxplot(reordered_aes)
+p
+```
+
+If you have long variable names, geom_boxplot() will work better if you flip it 90°. You can do that with coord_flip().
+
+```{r}
+p + coord_flip()
+```
+
+### Two categorical variables
+
+
+
+### Two continuous variables

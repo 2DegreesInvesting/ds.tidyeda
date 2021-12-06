@@ -85,9 +85,28 @@ Objectives:
 * Transforming incorrect values into missing values.
 * Convert missing values into a logical variable so you can visualize them.
 
+### Covariation: One categorical and one continuous variable
+
+This meetup covers the first part of
+[Covariation](https://r4ds.had.co.nz/exploratory-data-analysis.html#covariation):
+[Visualizing the relationship between a categorical variable and a continuous
+variable](https://r4ds.had.co.nz/exploratory-data-analysis.html#cat-cont). We'll
+also discuss how to some ways to make the code of your plots clearer using
+"noise cancelling" techniques.
+
+Objectives:
+
+* Visualize the covariation between a categorical and a continuous variable.
+
+* Omit common, memorable arguments: `data`, `mapping`, `x`, and `y`.
+
+* Save ggplot elements and plots as variables.
+
 ## Next
 
-* Explore the covariation between categorical and continuous variables.
+* Explore the covariation between two categorical variables and between two
+continuous variables.
+
 * Explore patterns in your data and extract them with a model.
 
 ## Resources
