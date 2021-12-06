@@ -4,13 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Covariation
-
-* The tendency for two or more variables to vary together in a related way.
-
-* To spot covariation, visualise the relationship between the variables. 
-
-* How? It depends on whether the variables are categorical or continuous.
+### Setup
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -19,25 +13,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-Packages.
-
 ```{r}
 library(tidyverse)
 ```
 
-Data.
+# Covariation
+
+* The tendency for two or more variables to vary together in a related way.
+
+* To spot covariation, visualise the relationship between the variables. 
+
+* How you do it depends on the type of variables you have:
+
+    * A categorical variable and a continuous variable (today).
+    * Two categorical variables.
+    * Two continuous variables.
+
+### A categorical and continuous variable.
 
 ```{r}
 diamonds %>% 
   select(price, cut)
 ```
-
-```{r}
-mpg %>% 
-  select(class, hwy)
-```
-
-### A categorical and continuous variable.
 
 #### Freaquency plot
 
@@ -82,34 +79,48 @@ ggplot(diamonds, aes(x = cut, y = price)) +
 
 * `cut` is an "ordered" factor.
 
-* `hwy` (Highway miles per gallon) isn't ordered so the trend is hard to see:
+```{r}
+diamonds %>% 
+  distinct(cut) %>% 
+  pull()
+```
+
+* In the `mpg` dataset, the variable `class` isn't ordered.
 
 ```{r}
-default_aes <- aes(
+mpg %>% 
+  distinct(class) %>% 
+  pull()
+```
+
+* The trend is hard to see on how highway mileage (`hwy`) varies across classes:
+
+```{r}
+class_hwy <- aes(
   x = class,
   y = hwy
 )
-default_aes
+class_hwy
 ```
 
 ```{r}
 ggplot(mpg) +
-  geom_boxplot(default_aes)
+  geom_boxplot(class_hwy)
 ```
 
 `reorder()` helps you order values of a categorical variable like `cut`.
 
 ```{r}
-reordered_aes <- aes(
+class_reordered_by_median_hwy <- aes(
   x = reorder(class, hwy, FUN = median),
   y = hwy
 )
-reordered_aes
+class_reordered_by_median_hwy
 ```
 
 ```{r}
 p <- ggplot(mpg) +
-  geom_boxplot(reordered_aes)
+  geom_boxplot(class_reordered_by_median_hwy)
 p
 ```
 

@@ -1,16 +1,5 @@
 
-# Covariation
-
--   The tendency for two or more variables to vary together in a related
-    way.
-
--   To spot covariation, visualise the relationship between the
-    variables.
-
--   How? It depends on whether the variables are categorical or
-    continuous.
-
-Packages.
+### Setup
 
 ``` r
 library(tidyverse)
@@ -24,7 +13,21 @@ library(tidyverse)
 #> x dplyr::lag()    masks stats::lag()
 ```
 
-Data.
+# Covariation
+
+-   The tendency for two or more variables to vary together in a related
+    way.
+
+-   To spot covariation, visualise the relationship between the
+    variables.
+
+-   How you do it depends on the type of variables you have:
+
+    -   A categorical variable and a continuous variable (today).
+    -   Two categorical variables.
+    -   Two continuous variables.
+
+### A categorical and continuous variable.
 
 ``` r
 diamonds %>% 
@@ -45,27 +48,6 @@ diamonds %>%
 #> # … with 53,930 more rows
 ```
 
-``` r
-mpg %>% 
-  select(class, hwy)
-#> # A tibble: 234 × 2
-#>    class     hwy
-#>    <chr>   <int>
-#>  1 compact    29
-#>  2 compact    29
-#>  3 compact    31
-#>  4 compact    30
-#>  5 compact    26
-#>  6 compact    26
-#>  7 compact    27
-#>  8 compact    26
-#>  9 compact    25
-#> 10 compact    28
-#> # … with 224 more rows
-```
-
-### A categorical and continuous variable.
-
 #### Freaquency plot
 
 This isn’t very useful.
@@ -83,7 +65,7 @@ ggplot(diamonds) +
 #> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> The variation
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> The variation
 of count across values of cut is too much. To make the comparison easier
 we need to standardize the valyes of `y`. Let’s plot density: The count
 standardize so that the area under each curve is one.
@@ -94,7 +76,7 @@ ggplot(diamonds) +
 #> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 Surprisingly, fair diamonds (the lowest quality) seem to have the
 highest average price!
@@ -108,7 +90,7 @@ ggplot(diamonds, aes(x = cut, y = price)) +
   geom_boxplot()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 -   The boxplots are compact so we can more easily compare them.
 
@@ -118,15 +100,33 @@ ggplot(diamonds, aes(x = cut, y = price)) +
 
 -   `cut` is an “ordered” factor.
 
--   `hwy` (Highway miles per gallon) isn’t ordered so the trend is hard
-    to see:
+``` r
+diamonds %>% 
+  distinct(cut) %>% 
+  pull()
+#> [1] Ideal     Premium   Good      Very Good Fair     
+#> Levels: Fair < Good < Very Good < Premium < Ideal
+```
+
+-   In the `mpg` dataset, the variable `class` isn’t ordered.
 
 ``` r
-default_aes <- aes(
+mpg %>% 
+  distinct(class) %>% 
+  pull()
+#> [1] "compact"    "midsize"    "suv"        "2seater"    "minivan"   
+#> [6] "pickup"     "subcompact"
+```
+
+-   The trend is hard to see on how highway mileage (`hwy`) varies
+    across classes:
+
+``` r
+class_hwy <- aes(
   x = class,
   y = hwy
 )
-default_aes
+class_hwy
 #> Aesthetic mapping: 
 #> * `x` -> `class`
 #> * `y` -> `hwy`
@@ -134,19 +134,19 @@ default_aes
 
 ``` r
 ggplot(mpg) +
-  geom_boxplot(default_aes)
+  geom_boxplot(class_hwy)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 `reorder()` helps you order values of a categorical variable like `cut`.
 
 ``` r
-reordered_aes <- aes(
+class_reordered_by_median_hwy <- aes(
   x = reorder(class, hwy, FUN = median),
   y = hwy
 )
-reordered_aes
+class_reordered_by_median_hwy
 #> Aesthetic mapping: 
 #> * `x` -> `reorder(class, hwy, FUN = median)`
 #> * `y` -> `hwy`
@@ -154,11 +154,11 @@ reordered_aes
 
 ``` r
 p <- ggplot(mpg) +
-  geom_boxplot(reordered_aes)
+  geom_boxplot(class_reordered_by_median_hwy)
 p
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 If you have long variable names you may better flip the plot.
 
@@ -166,4 +166,4 @@ If you have long variable names you may better flip the plot.
 p + coord_flip()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
