@@ -113,14 +113,8 @@ p <- ggplot(mpg) +
 p
 ```
 
-If you have long variable names, geom_boxplot() will work better if you flip it 90°. You can do that with coord_flip().
+If you have long variable names you may better flip the plot.
 
 ```{r}
 p + coord_flip()
 ```
-
-### Two categorical variables
-
-
-
-### Two continuous variables

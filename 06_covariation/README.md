@@ -160,15 +160,10 @@ p
 
 ![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-If you have long variable names, geom\_boxplot() will work better if you
-flip it 90°. You can do that with coord\_flip().
+If you have long variable names you may better flip the plot.
 
 ``` r
 p + coord_flip()
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
-
-### Two categorical variables
-
-### Two continuous variables
