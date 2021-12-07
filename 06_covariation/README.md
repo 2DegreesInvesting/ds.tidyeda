@@ -31,33 +31,31 @@ library(tidyverse)
 
 ``` r
 diamonds %>% 
-  select(price, cut)
+  select(cut, price)
 #> # A tibble: 53,940 × 2
-#>    price cut      
-#>    <int> <ord>    
-#>  1   326 Ideal    
-#>  2   326 Premium  
-#>  3   327 Good     
-#>  4   334 Premium  
-#>  5   335 Good     
-#>  6   336 Very Good
-#>  7   336 Very Good
-#>  8   337 Very Good
-#>  9   337 Fair     
-#> 10   338 Very Good
+#>    cut       price
+#>    <ord>     <int>
+#>  1 Ideal       326
+#>  2 Premium     326
+#>  3 Good        327
+#>  4 Premium     334
+#>  5 Good        335
+#>  6 Very Good   336
+#>  7 Very Good   336
+#>  8 Very Good   337
+#>  9 Fair        337
+#> 10 Very Good   338
 #> # … with 53,930 more rows
 ```
 
 #### Freaquency plot
-
-This isn’t very useful.
 
 ``` r
 ggplot(data = diamonds) + 
   geom_freqpoly(mapping = aes(x = price, colour = cut))
 ```
 
-Same
+Same with “noise cancelling” turned on
 
 ``` r
 ggplot(diamonds) + 
@@ -65,10 +63,16 @@ ggplot(diamonds) +
 #> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> The variation
-of count across values of cut is too much. To make the comparison easier
-we need to standardize the valyes of `y`. Let’s plot density: The count
-standardize so that the area under each curve is one.
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+This isn’t very useful.
+
+The variation of count across values of cut is too much.
+
+To make the comparison easier we need to standardize the valyes of `y`.
+
+Let’s plot density: The count standardize so that the area under each
+curve is one.
 
 ``` r
 ggplot(diamonds) + 
@@ -96,7 +100,7 @@ ggplot(diamonds, aes(x = cut, y = price)) +
 
 -   Are better quality diamonds cheaper on average?
 
-–
+Note:
 
 -   `cut` is an “ordered” factor.
 
@@ -108,7 +112,7 @@ diamonds %>%
 #> Levels: Fair < Good < Very Good < Premium < Ideal
 ```
 
--   In the `mpg` dataset, the variable `class` isn’t ordered.
+-   Compare: In the `mpg` dataset, the variable `class` isn’t ordered.
 
 ``` r
 mpg %>% 
@@ -139,7 +143,7 @@ ggplot(mpg) +
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-`reorder()` helps you order values of a categorical variable like `cut`.
+`reorder()` helps you order values of a categorical variable.
 
 ``` r
 class_reordered_by_median_hwy <- aes(

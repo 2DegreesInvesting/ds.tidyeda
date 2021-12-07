@@ -33,27 +33,31 @@ library(tidyverse)
 
 ```{r}
 diamonds %>% 
-  select(price, cut)
+  select(cut, price)
 ```
 
 #### Freaquency plot
-
-This isn't very useful.
 
 ```r
 ggplot(data = diamonds) + 
   geom_freqpoly(mapping = aes(x = price, colour = cut))
 ```
 
-Same
+Same with "noise cancelling" turned on
 
 ```{r}
 ggplot(diamonds) + 
   geom_freqpoly(aes(x = price, colour = cut))
 ```
-The variation of count across values of cut is too much. To make the comparison
-easier we need to standardize the valyes of `y`. Let's plot density: The count
-standardize so that the area under each curve is one.
+
+This isn't very useful.
+
+The variation of count across values of cut is too much. 
+
+To make the comparison easier we need to standardize the valyes of `y`.
+
+Let's plot density: The count standardize so that the area under each curve is
+one.
 
 ```{r}
 ggplot(diamonds) + 
@@ -75,7 +79,7 @@ ggplot(diamonds, aes(x = cut, y = price)) +
 
 * Are better quality diamonds cheaper on average?
 
---
+Note:
 
 * `cut` is an "ordered" factor.
 
@@ -85,7 +89,7 @@ diamonds %>%
   pull()
 ```
 
-* In the `mpg` dataset, the variable `class` isn't ordered.
+* Compare: In the `mpg` dataset, the variable `class` isn't ordered.
 
 ```{r}
 mpg %>% 
@@ -108,7 +112,7 @@ ggplot(mpg) +
   geom_boxplot(class_hwy)
 ```
 
-`reorder()` helps you order values of a categorical variable like `cut`.
+`reorder()` helps you order values of a categorical variable.
 
 ```{r}
 class_reordered_by_median_hwy <- aes(
