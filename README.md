@@ -87,8 +87,8 @@ This meetup covers the first part of
 [Visualizing the relationship between a categorical variable and a
 continuous
 variable](https://r4ds.had.co.nz/exploratory-data-analysis.html#cat-cont).
-We’ll also discuss how to some ways to make the code of your plots
-clearer using “noise cancelling” techniques.
+We’ll also discuss some ways to make the code of your plots clearer
+using “noise cancelling” techniques.
 
 Objectives:
 
