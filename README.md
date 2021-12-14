@@ -110,22 +110,17 @@ variables](https://r4ds.had.co.nz/exploratory-data-analysis.html#two-continuous-
 
 Objectives:
 
--   Explore the covariation between two categorical variablesm mapping
-    count to area.
+-   Explore the covariation between two categorical variables.
 
--   Explore the covariation between two categorical variablesm mapping
-    count to colour-fill.
+-   Map count to area and to colour-fill.
 
 -   Explore the covariation between two continuous variables.
 
--   Solve over-plotting with transparency.
+-   Solve over-plotting with transparency and bins.
 
--   Solve over-plotting with square and hexagonal bins.
+-   Categorize a continuous variable then use a boxplot.
 
--   Categorize a continuous variable and visualize covariation with a
-    boxplot.
-
--   Map the width of a boxplot to the number of ubservations.
+-   Map the width of a boxplot to the number of data points.
 
 ## Next
 
