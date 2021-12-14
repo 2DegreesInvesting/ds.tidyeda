@@ -137,30 +137,90 @@ p + coord_flip()
 
 ### Two categorical variables
 
-* Explore the covariation between two categorical variablesm mapping count to area.
+Data:
 
+* `color`: Colour, ordered from D (best) to J (worst).
+* `cut`: Quality, ordered from Fair to Ideal.
 
+```{r}
+diamonds %>% 
+  select(color, cut)
+```
 
-* Explore the covariation between two categorical variablesm mapping count to colour-fill.
+Two categorical variables, mapping count to area.
 
+```{r}
+ggplot(diamonds) +
+  geom_count(aes(color, cut))
+```
 
+Two categorical variables, mapping count to colour fill.
+
+```{r}
+diamonds %>% 
+  count(color, cut) %>%  # Note the change from %>% to +
+  ggplot() + 
+    geom_tile(aes(color, cut, fill = n))
+```
 
 ### Two continuous variables
 
-* Explore the covariation between two continuous variables.
+Data:
 
+* `carat`: Weight.
+* `price`: Price.
 
+```{r}
+diamonds %>% 
+  select(carat, price)
+```
+
+Two continuous variables, suffering overplotting.
+
+```{r}
+ggplot(diamonds) +
+  geom_point(aes(carat, price))
+```
 
 * Solve over-plotting with transparency.
 
+```{r}
+ggplot(diamonds) + 
+  geom_point(aes(carat, price), alpha = 1 / 100)
+```
 
+* Use smaller data.
 
-* Solve over-plotting with square and hexagonal bins.
+```{r}
+smaller <- diamonds %>% 
+  filter(carat < 3)
+```
 
+* Solve over-plotting with square bins.
 
+```{r}
+ggplot(smaller) +
+  geom_bin2d(aes(carat, price))
+```
+
+* Solve over-plotting with hexagonal bins.
+
+```{r}
+# install.packages("hexbin")
+ggplot(smaller) +
+  geom_hex(aes(carat, price))
+```
 
 * Categorize a continuous variable and visualize covariation with a boxplot.
 
+```{r}
+ggplot(smaller) + 
+  geom_boxplot(aes(carat, price, group = cut_width(carat, 0.1)))
+```
 
+* Map the width of a boxplot to the number of observations.
 
-* Map the width of a boxplot to the number of ubservations.
+```{r}
+ggplot(smaller) + 
+  geom_boxplot(aes(carat, price, group = cut_number(carat, 20)))
+```

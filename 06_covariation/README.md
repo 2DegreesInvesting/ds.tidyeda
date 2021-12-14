@@ -174,21 +174,135 @@ p + coord_flip()
 
 ### Two categorical variables
 
--   Explore the covariation between two categorical variablesm mapping
-    count to area.
+Data:
 
--   Explore the covariation between two categorical variablesm mapping
-    count to colour-fill.
+-   `color`: Colour, ordered from D (best) to J (worst).
+-   `cut`: Quality, ordered from Fair to Ideal.
+
+``` r
+diamonds %>% 
+  select(color, cut)
+#> # A tibble: 53,940 × 2
+#>    color cut      
+#>    <ord> <ord>    
+#>  1 E     Ideal    
+#>  2 E     Premium  
+#>  3 E     Good     
+#>  4 I     Premium  
+#>  5 J     Good     
+#>  6 J     Very Good
+#>  7 I     Very Good
+#>  8 H     Very Good
+#>  9 E     Fair     
+#> 10 H     Very Good
+#> # … with 53,930 more rows
+```
+
+Two categorical variables, mapping count to area.
+
+``` r
+ggplot(diamonds) +
+  geom_count(aes(color, cut))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+Two categorical variables, mapping count to colour fill.
+
+``` r
+diamonds %>% 
+  count(color, cut) %>%  # Note the change from %>% to +
+  ggplot() + 
+    geom_tile(aes(color, cut, fill = n))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 ### Two continuous variables
 
--   Explore the covariation between two continuous variables.
+Data:
+
+-   `carat`: Weight.
+-   `price`: Price.
+
+``` r
+diamonds %>% 
+  select(carat, price)
+#> # A tibble: 53,940 × 2
+#>    carat price
+#>    <dbl> <int>
+#>  1  0.23   326
+#>  2  0.21   326
+#>  3  0.23   327
+#>  4  0.29   334
+#>  5  0.31   335
+#>  6  0.24   336
+#>  7  0.24   336
+#>  8  0.26   337
+#>  9  0.22   337
+#> 10  0.23   338
+#> # … with 53,930 more rows
+```
+
+Two continuous variables, suffering overplotting.
+
+``` r
+ggplot(diamonds) +
+  geom_point(aes(carat, price))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 -   Solve over-plotting with transparency.
 
--   Solve over-plotting with square and hexagonal bins.
+``` r
+ggplot(diamonds) + 
+  geom_point(aes(carat, price), alpha = 1 / 100)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+-   Use smaller data.
+
+``` r
+smaller <- diamonds %>% 
+  filter(carat < 3)
+```
+
+-   Solve over-plotting with square bins.
+
+``` r
+ggplot(smaller) +
+  geom_bin2d(aes(carat, price))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+-   Solve over-plotting with hexagonal bins.
+
+``` r
+# install.packages("hexbin")
+ggplot(smaller) +
+  geom_hex(aes(carat, price))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 -   Categorize a continuous variable and visualize covariation with a
     boxplot.
 
--   Map the width of a boxplot to the number of ubservations.
+``` r
+ggplot(smaller) + 
+  geom_boxplot(aes(carat, price, group = cut_width(carat, 0.1)))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+
+-   Map the width of a boxplot to the number of observations.
+
+``` r
+ggplot(smaller) + 
+  geom_boxplot(aes(carat, price, group = cut_number(carat, 20)))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
