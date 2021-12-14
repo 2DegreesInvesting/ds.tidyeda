@@ -144,23 +144,23 @@ Data:
 
 ```{r}
 diamonds %>% 
-  select(color, cut)
+  select(_____, ___)
 ```
 
 Two categorical variables, mapping count to area.
 
 ```{r}
-ggplot(diamonds) +
-  geom_count(aes(color, cut))
+ggplot(________) +
+  geom_count(aes(_____, ___))
 ```
 
 Two categorical variables, mapping count to colour fill.
 
 ```{r}
 diamonds %>% 
-  count(color, cut) %>%  # Note the change from %>% to +
+  _____(color, cut) %>%  # Note the change from %>% to +
   ggplot() + 
-    geom_tile(aes(color, cut, fill = n))
+    geom_tile(aes(color, cut, fill = _))
 ```
 
 ### Two continuous variables
@@ -172,7 +172,7 @@ Data:
 
 ```{r}
 diamonds %>% 
-  select(carat, price)
+  ______(carat, _____)
 ```
 
 Two continuous variables, suffering overplotting.
@@ -186,7 +186,7 @@ Solve over-plotting with transparency.
 
 ```{r}
 ggplot(diamonds) + 
-  geom_point(aes(carat, price), alpha = 1 / 100)
+  geom_point(aes(carat, price), _____ = 1 / 100)
 ```
 
 Use smaller data.
@@ -196,11 +196,11 @@ smaller <- diamonds %>%
   filter(carat < 3)
 ```
 
-Solve over-plotting with square bins.
+Solve over-plotting with square 2-dimensional bins.
 
 ```{r}
 ggplot(smaller) +
-  geom_bin2d(aes(carat, price))
+  geom______(aes(carat, price))
 ```
 
 Solve over-plotting with hexagonal bins.
@@ -208,7 +208,7 @@ Solve over-plotting with hexagonal bins.
 ```{r}
 # install.packages("hexbin")
 ggplot(smaller) +
-  geom_hex(aes(carat, price))
+  geom____(aes(carat, price))
 ```
 
 Categorize a continuous variable and visualize covariation with a boxplot.
@@ -230,7 +230,7 @@ Similar.
 
 ```{r}
 ggplot(smaller) + 
-  geom_boxplot(aes(carat, price, group = cut_width(carat, 0.1)))
+  geom_boxplot(aes(carat, price, _____ = cut_width(carat, 0.1)))
 ```
 
 Map the width of a boxplot to the number of observations:
@@ -241,7 +241,7 @@ Map the width of a boxplot to the number of observations:
 ggplot(smaller) + 
   geom_boxplot(
     aes(carat, price, group = cut_width(carat, 0.1)), 
-    varwidth = TRUE
+    varwidth = ____
   )
 ```
 
@@ -249,5 +249,5 @@ ggplot(smaller) +
 
 ```{r}
 ggplot(smaller) + 
-  geom_boxplot(aes(carat, price, group = cut_number(carat, 20)))
+  geom_boxplot(aes(carat, price, group = cut_______(carat, 20)))
 ```
