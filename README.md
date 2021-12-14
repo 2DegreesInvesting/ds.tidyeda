@@ -99,10 +99,35 @@ Objectives:
 
 -   Save ggplot elements and plots as variables.
 
-## Next
+### Covariation: Two categorical variables and two continuous variables
 
--   Explore the covariation between two categorical variables and
-    between two continuous variables.
+This meetup covers the last part of
+[Covariation](https://r4ds.had.co.nz/exploratory-data-analysis.html#covariation):
+Exploring the relationship between [two categorical
+variables](https://r4ds.had.co.nz/exploratory-data-analysis.html#two-categorical-variables)
+and between [two continuous
+variables](https://r4ds.had.co.nz/exploratory-data-analysis.html#two-continuous-variables).
+
+Objectives:
+
+-   Explore the covariation between two categorical variablesm mapping
+    count to area.
+
+-   Explore the covariation between two categorical variablesm mapping
+    count to colour-fill.
+
+-   Explore the covariation between two continuous variables.
+
+-   Solve over-plotting with transparency.
+
+-   Solve over-plotting with square and hexagonal bins.
+
+-   Categorize a continuous variable and visualize covariation with a
+    boxplot.
+
+-   Map the width of a boxplot to the number of ubservations.
+
+## Next
 
 -   Explore patterns in your data and extract them with a model.
 

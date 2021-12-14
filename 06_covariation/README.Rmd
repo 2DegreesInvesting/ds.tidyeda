@@ -25,11 +25,11 @@ library(tidyverse)
 
 * How you do it depends on the type of variables you have:
 
-    * A categorical variable and a continuous variable (today).
+    * A categorical variable and a continuous variable.
     * Two categorical variables.
     * Two continuous variables.
 
-### A categorical and continuous variable.
+### A categorical and continuous variable
 
 ```{r}
 diamonds %>% 
@@ -133,3 +133,34 @@ If you have long variable names you may better flip the plot.
 ```{r}
 p + coord_flip()
 ```
+
+
+### Two categorical variables
+
+* Explore the covariation between two categorical variablesm mapping count to area.
+
+
+
+* Explore the covariation between two categorical variablesm mapping count to colour-fill.
+
+
+
+### Two continuous variables
+
+* Explore the covariation between two continuous variables.
+
+
+
+* Solve over-plotting with transparency.
+
+
+
+* Solve over-plotting with square and hexagonal bins.
+
+
+
+* Categorize a continuous variable and visualize covariation with a boxplot.
+
+
+
+* Map the width of a boxplot to the number of ubservations.
