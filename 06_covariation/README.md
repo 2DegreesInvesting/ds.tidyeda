@@ -253,7 +253,7 @@ ggplot(diamonds) +
 
 ![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
--   Solve over-plotting with transparency.
+Solve over-plotting with transparency.
 
 ``` r
 ggplot(diamonds) + 
@@ -262,14 +262,14 @@ ggplot(diamonds) +
 
 ![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
--   Use smaller data.
+Use smaller data.
 
 ``` r
 smaller <- diamonds %>% 
   filter(carat < 3)
 ```
 
--   Solve over-plotting with square bins.
+Solve over-plotting with square bins.
 
 ``` r
 ggplot(smaller) +
@@ -278,7 +278,7 @@ ggplot(smaller) +
 
 ![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
--   Solve over-plotting with hexagonal bins.
+Solve over-plotting with hexagonal bins.
 
 ``` r
 # install.packages("hexbin")
@@ -288,21 +288,66 @@ ggplot(smaller) +
 
 ![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
--   Categorize a continuous variable and visualize covariation with a
-    boxplot.
+Categorize a continuous variable and visualize covariation with a
+boxplot.
+
+``` r
+cut_carat <- smaller %>% 
+  mutate(carat2 = cut_width(carat, 0.1)) %>% 
+  select(price, carat, carat2) %>% 
+  arrange(desc(carat))
+cut_carat
+#> # A tibble: 53,900 × 3
+#>    price carat carat2     
+#>    <int> <dbl> <fct>      
+#>  1 15030  2.8  (2.75,2.85]
+#>  2 18788  2.8  (2.75,2.85]
+#>  3 10424  2.77 (2.75,2.85]
+#>  4 13156  2.75 (2.65,2.75]
+#>  5 15415  2.75 (2.65,2.75]
+#>  6  8807  2.74 (2.65,2.75]
+#>  7 17164  2.74 (2.65,2.75]
+#>  8 17184  2.74 (2.65,2.75]
+#>  9  6870  2.72 (2.65,2.75]
+#> 10 11594  2.72 (2.65,2.75]
+#> # … with 53,890 more rows
+```
+
+``` r
+ggplot(cut_carat) + 
+  geom_boxplot(aes(carat2, price))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+
+Similar.
 
 ``` r
 ggplot(smaller) + 
   geom_boxplot(aes(carat, price, group = cut_width(carat, 0.1)))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
--   Map the width of a boxplot to the number of observations.
+Map the width of a boxplot to the number of observations:
+
+1.  Make the box-width proportional to the number of points in each bin.
+
+``` r
+ggplot(smaller) + 
+  geom_boxplot(
+    aes(carat, price, group = cut_width(carat, 0.1)), 
+    varwidth = TRUE
+  )
+```
+
+![](README_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+
+2.  Display approximately the same number of points in each bin.
 
 ``` r
 ggplot(smaller) + 
   geom_boxplot(aes(carat, price, group = cut_number(carat, 20)))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->

@@ -182,28 +182,28 @@ ggplot(diamonds) +
   geom_point(aes(carat, price))
 ```
 
-* Solve over-plotting with transparency.
+Solve over-plotting with transparency.
 
 ```{r}
 ggplot(diamonds) + 
   geom_point(aes(carat, price), alpha = 1 / 100)
 ```
 
-* Use smaller data.
+Use smaller data.
 
 ```{r}
 smaller <- diamonds %>% 
   filter(carat < 3)
 ```
 
-* Solve over-plotting with square bins.
+Solve over-plotting with square bins.
 
 ```{r}
 ggplot(smaller) +
   geom_bin2d(aes(carat, price))
 ```
 
-* Solve over-plotting with hexagonal bins.
+Solve over-plotting with hexagonal bins.
 
 ```{r}
 # install.packages("hexbin")
@@ -211,14 +211,41 @@ ggplot(smaller) +
   geom_hex(aes(carat, price))
 ```
 
-* Categorize a continuous variable and visualize covariation with a boxplot.
+Categorize a continuous variable and visualize covariation with a boxplot.
+
+```{r}
+cut_carat <- smaller %>% 
+  mutate(carat2 = cut_width(carat, 0.1)) %>% 
+  select(price, carat, carat2) %>% 
+  arrange(desc(carat))
+cut_carat
+```
+
+```{r}
+ggplot(cut_carat) + 
+  geom_boxplot(aes(carat2, price))
+```
+
+Similar.
 
 ```{r}
 ggplot(smaller) + 
   geom_boxplot(aes(carat, price, group = cut_width(carat, 0.1)))
 ```
 
-* Map the width of a boxplot to the number of observations.
+Map the width of a boxplot to the number of observations:
+
+1. Make the box-width proportional to the number of points in each bin.
+
+```{r}
+ggplot(smaller) + 
+  geom_boxplot(
+    aes(carat, price, group = cut_width(carat, 0.1)), 
+    varwidth = TRUE
+  )
+```
+
+2. Display approximately the same number of points in each bin. 
 
 ```{r}
 ggplot(smaller) + 
