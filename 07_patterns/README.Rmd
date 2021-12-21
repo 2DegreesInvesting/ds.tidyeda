@@ -6,8 +6,6 @@ editor_options:
 
 # Patterns
 
-### Setup
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -20,20 +18,24 @@ library(tidyverse)
 library(modelr)
 ```
 
+Patterns reveal covariation. 
 
-### Insights
+Models are a tool for extracting patterns out of
+data.
 
-* Patterns reveal covariation.
+If you spot a pattern, ask yourself:
 
-* Covariation reduces uncertainty. If two variables covary:
+* Could this pattern be due to coincidence (i.e. random chance)?
 
-    * You can use one to better predict the second.
-    * If the relationship is causal (a special case), you can use one variable
-    to control the second.
+* How can you describe the relationship implied by the pattern?
 
-* Models are a tool for extracting patterns out of data. 
+* How strong is the relationship implied by the pattern?
 
-### Why poor-quality diamonds seem most expensive?
+* What other variables might affect the relationship?
+
+* Does the relationship change if you look at individual subgroups of the data?
+
+### What is the relationship between price and quality?
 
 ```{r}
 ggplot(diamonds, aes(cut, price)) + 
@@ -99,3 +101,17 @@ faithful %>%
   ggplot(aes(eruptions, resid)) + 
   geom_point()
 ```
+
+### Insights
+
+* Patterns reveal covariation.
+
+* If variation adds uncertainty, covariation reduces it. 
+
+* If two variables covary:
+
+    * You can use one to better predict the second.
+    * If the relationship is causal (a special case), you can use one variable
+    to control the second.
+
+* Models are a tool for extracting patterns out of data. 

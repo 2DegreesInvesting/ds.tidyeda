@@ -1,8 +1,6 @@
 
 # Patterns
 
-### Setup
-
 ``` r
 library(tidyverse)
 #> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
@@ -16,19 +14,24 @@ library(tidyverse)
 library(modelr)
 ```
 
-### Insights
+Patterns reveal covariation.
 
--   Patterns reveal covariation.
+Models are a tool for extracting patterns out of data.
 
--   Covariation reduces uncertainty. If two variables covary:
+If you spot a pattern, ask yourself:
 
-    -   You can use one to better predict the second.
-    -   If the relationship is causal (a special case), you can use one
-        variable to control the second.
+-   Could this pattern be due to coincidence (i.e. random chance)?
 
--   Models are a tool for extracting patterns out of data.
+-   How can you describe the relationship implied by the pattern?
 
-### Why poor-quality diamonds seem most expensive?
+-   How strong is the relationship implied by the pattern?
+
+-   What other variables might affect the relationship?
+
+-   Does the relationship change if you look at individual subgroups of
+    the data?
+
+### What is the relationship between price and quality?
 
 ``` r
 ggplot(diamonds, aes(cut, price)) + 
@@ -106,3 +109,17 @@ faithful %>%
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+### Insights
+
+-   Patterns reveal covariation.
+
+-   If variation adds uncertainty, covariation reduces it.
+
+-   If two variables covary:
+
+    -   You can use one to better predict the second.
+    -   If the relationship is causal (a special case), you can use one
+        variable to control the second.
+
+-   Models are a tool for extracting patterns out of data.
