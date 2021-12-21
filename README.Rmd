@@ -125,9 +125,18 @@ Objectives:
 
 * Map the width of a boxplot to the number of data points.
 
-## Next
+## Patterns and models
 
-* Explore patterns in your data and extract them with a model.
+This meetup covers [Patterns and
+models](https://r4ds.had.co.nz/exploratory-data-analysis.html#patterns-and-models).
+
+Objectives:
+
+* Explore the relationship between two variables.
+
+* Extract a pattern with a model.
+
+* Explore the relationship between two variables after removing a pattern.
 
 ## Resources
 
