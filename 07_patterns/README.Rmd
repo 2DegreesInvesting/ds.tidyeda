@@ -4,18 +4,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Patterns
+# Patterns and models
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
-```
-
-```{r}
-library(tidyverse)
-library(modelr)
 ```
 
 Patterns reveal covariation. 
@@ -34,6 +30,11 @@ If you spot a pattern, ask yourself:
 * What other variables might affect the relationship?
 
 * Does the relationship change if you look at individual subgroups of the data?
+
+```{r}
+library(tidyverse)
+library(modelr)
+```
 
 ### Warm up
 
