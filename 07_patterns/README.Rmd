@@ -9,8 +9,7 @@ editor_options:
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  eval = FALSE
+  comment = "#>"
 )
 ```
 
@@ -46,20 +45,19 @@ glimpse(faithful)
 ```
 
 ```{r}
-ggplot(faithful, aes(_________, waiting)) + 
-  geom______() +
-  labs(title = "_______wait times are associated with ______ eruptions")
+ggplot(faithful, aes(eruptions, waiting)) + 
+  geom_point() +
+  labs(title = "Longer wait times are associated with longers eruptions")
 ```
 
 Remove the pattern and plot again
 
 ```{r}
-mod <- lm(_______ ~ eruptions, data = ________)
+mod <- lm(waiting ~ eruptions, data = faithful)
 
 faithful %>% 
   modelr::add_residuals(mod) %>%
-  mutate(resid = resid) %>%
-  ggplot(aes(eruptions, _____)) + geom_point()
+  ggplot(aes(eruptions, resid)) + geom_point()
 ```
 
 ### What is the relationship between price and quality?
