@@ -35,6 +35,26 @@ If you spot a pattern, ask yourself:
 
 * Does the relationship change if you look at individual subgroups of the data?
 
+### Warm up
+
+Longer `waiting` times are associated with longer `eruptions`
+
+```{r}
+ggplot(faithful, aes(eruptions, waiting)) + 
+  geom_point()
+```
+
+Remove the pattern and plot again
+
+```{r}
+mod <- lm(waiting ~ eruptions, data = faithful)
+
+faithful %>% 
+  modelr::add_residuals(mod) %>%
+  mutate(resid = resid) %>%
+  ggplot(aes(eruptions, resid)) + geom_point()
+```
+
 ### What is the relationship between price and quality?
 
 ```{r}
@@ -79,27 +99,6 @@ diamonds2 <- diamonds %>%
 ggplot(diamonds2, aes(cut, resid)) + 
   geom_boxplot() +
   labs(title = "Relative to their size, better diamonds are more expensive.")
-```
-
-### Bonus
-
-Longer `waiting` times are associated with longer `eruptions`
-
-```{r}
-ggplot(faithful, aes(eruptions, waiting)) + 
-  geom_point()
-```
-
-Remove the pattern and plot again
-
-```{r}
-mod <- lm(waiting ~ eruptions, data = faithful)
-
-faithful %>% 
-  modelr::add_residuals(mod) %>%
-  mutate(resid = resid) %>%
-  ggplot(aes(eruptions, resid)) + 
-  geom_point()
 ```
 
 ### Insights
