@@ -133,8 +133,7 @@ Objectives:
 
 -   Extract a pattern with a model.
 
--   Explore the relationship between two variables after removing a
-    pattern.
+-   Explore the relationship again, after removing the pattern.
 
 ## Resources
 

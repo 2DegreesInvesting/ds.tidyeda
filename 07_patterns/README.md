@@ -20,9 +20,9 @@ Models are a tool for extracting patterns out of data.
 
 If you spot a pattern, ask yourself:
 
--   Could this pattern be due to coincidence (i.e. random chance)?
-
 -   How can you describe the relationship implied by the pattern?
+
+-   Could this pattern be due to coincidence (i.e. random chance)?
 
 -   How strong is the relationship implied by the pattern?
 
@@ -33,11 +33,13 @@ If you spot a pattern, ask yourself:
 
 ### Warm up
 
-Longer `waiting` times are associated with longer `eruptions`
+-   `eruptions`: Eruption time in mins.
+-   `waiting` Waiting time to next eruption (in mins).
 
 ``` r
 ggplot(faithful, aes(eruptions, waiting)) + 
-  geom_point()
+  geom_point() +
+  labs(title = "Longer wait times are associated with longer eruptions")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->

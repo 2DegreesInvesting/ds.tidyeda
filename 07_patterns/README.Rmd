@@ -25,9 +25,9 @@ data.
 
 If you spot a pattern, ask yourself:
 
-* Could this pattern be due to coincidence (i.e. random chance)?
-
 * How can you describe the relationship implied by the pattern?
+
+* Could this pattern be due to coincidence (i.e. random chance)?
 
 * How strong is the relationship implied by the pattern?
 
@@ -37,22 +37,28 @@ If you spot a pattern, ask yourself:
 
 ### Warm up
 
-Longer `waiting` times are associated with longer `eruptions`
+* `eruptions`: Eruption time in mins.
+* `waiting` Waiting time to next eruption (in mins).
 
 ```{r}
-ggplot(faithful, aes(eruptions, waiting)) + 
-  geom_point()
+glimpse(faithful)
+```
+
+```{r}
+ggplot(faithful, aes(_________, waiting)) + 
+  geom______() +
+  labs(title = "_______wait times are associated with ______ eruptions")
 ```
 
 Remove the pattern and plot again
 
 ```{r}
-mod <- lm(waiting ~ eruptions, data = faithful)
+mod <- lm(_______ ~ eruptions, data = ________)
 
 faithful %>% 
   modelr::add_residuals(mod) %>%
   mutate(resid = resid) %>%
-  ggplot(aes(eruptions, resid)) + geom_point()
+  ggplot(aes(eruptions, _____)) + geom_point()
 ```
 
 ### What is the relationship between price and quality?
